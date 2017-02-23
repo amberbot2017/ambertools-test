@@ -2,15 +2,7 @@ language: cpp
 
 matrix:
   include:
-     - { os: linux, env: PYTHON_VERSION=2.7 MINICONDA_IN_AMBERHOME=True}
-     - { os: linux, env: PYTHON_VERSION=2.7 MINICONDA_WILL_BE_INSTALLED=True}
-     - { os: linux, env: PYTHON_VERSION=2.7 MINICONDA_WILL_BE_INSTALLED=True TEST_LONG=True}
-     - { os: linux, env: PYTHON_VERSION=2.7 USE_WITH_PYTHON=True}
-     - { os: linux, env: PYTHON_VERSION=2.7 SKIP_PYTHON=True}
-     - { os: linux, env: PYTHON_VERSION=2.7 USE_AMBER_PREFIX=True}
-     - { os: linux, env: PYTHON_VERSION=2.7 AMBER_INSTALL_MPI=True}
-     - { os: linux, env: PYTHON_VERSION=3.5 } 
-       # - { os: osx, env: PYTHON_VERSION=3.5 } 
+     - { os: linux, env: PYTHON_VERSION=2.7 } 
 
 sudo: true
 
@@ -22,6 +14,7 @@ addons:
     - gcc-5
     - g++-5
     - gfortran
+    - cmake
     - unzip
     - csh
     - flex
