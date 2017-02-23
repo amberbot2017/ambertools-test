@@ -68,7 +68,7 @@ function run_tests(){
     else
         source $TRAVIS_BUILD_DIR/amber$version/amber.sh
     fi
-    if [ "$TEST_LONG" = "True" ]; then
+    if [ "$TEST_TASK" != "" ]; then
         run_long_test_simplified
     else
         if [ "$SKIP_PYTHON" != "True" ]; then

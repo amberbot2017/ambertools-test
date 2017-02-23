@@ -1,14 +1,27 @@
 #!/usr/bin/env python
 from time import time
+import os
 import sys
 import subprocess
 
-programs = ['clean', 'is_amberhome_defined',
-            'cpptraj', 'pytraj', 'parmed', 'pdb4amber',
-            'leap', 'antechamber', 'unitcell', 'reduce',
-            'nab', 'mdgx', 'resp', 'sqm',
-            'gbnsr6', 'elsize', 'paramfit',
-            'FEW', 'cphstats', 'cpinutil']
+test_task = os.getenv('TEST_TASK', '')
+
+if test_task == 'fast':
+    programs = ['clean', 'is_amberhome_defined',
+                'pymsmt',
+                'cpptraj', 'pytraj', 'parmed', 'pdb4amber',
+                'leap', 'antechamber', 'unitcell', 'reduce',
+                'nab', 'mdgx', 'resp', 'sqm',
+                'gbnsr6', 'elsize', 'paramfit',
+                'FEW', 'cphstats', 'cpinutil']
+elif test_task == 'mmpbsa':
+    programs = ['clean', 'is_amberhome_defined',
+                'mmpbsa', 'mm_pbsa',]
+elif test_task == 'rism':
+    programs = ['rism1d', 'rism3d', 'rism3d.periodic']
+else:
+    print('not sure how to test with test_task = {}'.format(test_task))
+    sys.exit(0)
 
 def execute(command):
     then = time()
