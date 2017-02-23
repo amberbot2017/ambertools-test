@@ -13,12 +13,11 @@ def change_folder(where):
     os.chdir(here)
 
 
-test_task = os.getenv('TEST_TASK', '')
+test_task = os.getenv('TEST_TASK', 'fast')
 sanderapi_tests = ['test.parm7', 'Fortran', 'Fortran2', 'C', 'CPP', 'Python', 'clean']
 
 if test_task == 'fast':
-    programs = ['clean', 'is_amberhome_defined',
-                'test.pymsmt',
+    programs = [
                 'test.cpptraj', 'test.pytraj', 'test.parmed', 'test.pdb4amber',
                 'test.leap', 'test.antechamber', 'test.unitcell', 'test.reduce',
                 'test.nab', 'test.mdgx', 'test.resp', 'test.sqm',
@@ -61,16 +60,23 @@ def execute(command):
 
 def test_me():
     errors = []
-    for me in programs:
-        output = execute(['make', me])
-        if 'Program error' in output or 'possible FAILURE' in output or 'No rule to make target' in output:
+    amberhome = os.getenv('AMBERHOME')
+    print(amberhome + '/test/sanderapi')
     with change_folder(os.getenv('AMBERHOME') + '/test/sanderapi'):
         for me in sanderapi_tests:
             output = execute(['make', me])
             if 'Program error' in output or 'possible FAILURE' in output or 'No rule to make target' in output:
                 errors.append(output)
-                errors.append(output)
+
+    print(amberhome + '/AmberTools/test/')
+    for me in programs:
+        output = execute(['make', me])
+        if 'Program error' in output or 'possible FAILURE' in output or 'No rule to make target' in output:
+            errors.append(output)
     if errors:
         for out in errors:
             print(out)
     assert not errors
+
+if __name__ == '__main__':
+    test_me()
