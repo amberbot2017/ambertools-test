@@ -5,12 +5,15 @@
 For testing AmberTools
 
 # How to run your own change?
-1. make your own AmberTools17.{date}.tar.gz file
+- fork this repo to your own github account
+- make your own AmberTools17.{date}.tar.gz file
 ```bash
+    # do some code changes, then
     cd $AMBERHOME
     sh ./mkrelease_at # about 5 minutes
-    # then upload to somewhere
+    # then upload to somewhere so travis or circleci can download it (we give instruction for them to do that).
 ```
-2. update AmberTools17 url in [devtools/ci/load_functions.sh](devtools/ci/load_functions.sh)
-3. update your own test in [run_tests function](devtools/ci/load_functions.sh)
-4. make a pull request to this repo or [activate your travis account](https://travis-ci.org/getting_started)
+- update AmberTools17 url in [devtools/ci/load_functions.sh](devtools/ci/load_functions.sh)
+- (optional) update your own test in [run_tests function](devtools/ci/load_functions.sh)
+- (optional) update [.travis file](https://github.com/Amber-MD/ambertools-test/blob/nightly/.travis.yml#L3) to add more builds
+- make a pull request to this repo or [activate your travis account](https://travis-ci.org/getting_started)
