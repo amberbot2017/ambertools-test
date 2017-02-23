@@ -18,7 +18,7 @@ elif test_task == 'mmpbsa':
     programs = ['clean', 'is_amberhome_defined',
                 'mmpbsa', 'mm_pbsa',]
 elif test_task == 'rism':
-    programs = ['rism1d', 'rism3d', 'rism3d.periodic']
+    programs = ['rism1d', 'rism3d.periodic']
 else:
     print('not sure how to test with test_task = {}'.format(test_task))
     sys.exit(0)
